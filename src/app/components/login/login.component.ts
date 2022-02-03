@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-const STORAGE_KEY = 'trainer';
+import { STORAGE_KEY } from 'src/app/constants';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +20,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem(STORAGE_KEY)) { // If already logged in reroute to main page.
+      this.router.navigate(['catalogue']);
+    }
+
     this.loginForm = this.formBuilder.group({
       username: [
         '',

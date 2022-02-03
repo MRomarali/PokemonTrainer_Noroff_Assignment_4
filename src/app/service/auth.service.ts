@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { STORAGE_KEY } from '../constants';
-import { User } from '../models/User.model';
+import { STORAGE_TRAINER_KEY } from '../constants';
+import { getLocalStorage } from '../helpers/storage.helper';
+import { Trainer } from '../models/trainer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,12 @@ export class AuthService {
   constructor() { }
 
   // getters & setters
-  get getUser(): User {
-    return { id: 0, username: '', pokemons: [] };
+  get getTrainer(): Trainer {
+    return { id: 0, username: '', collection: [] };
   }
 
   isLoggedIn(): boolean {
-    const auth = localStorage.getItem(STORAGE_KEY);
+    const auth = getLocalStorage(STORAGE_TRAINER_KEY);
     if (auth) { return true; }
 
     return false;

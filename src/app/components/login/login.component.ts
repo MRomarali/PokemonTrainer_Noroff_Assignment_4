@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { STORAGE_KEY } from 'src/app/constants';
+import { STORAGE_TRAINER_KEY } from 'src/app/constants';
+import { getLocalStorage, setLocalStorage } from 'src/app/helpers/storage.helper';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem(STORAGE_KEY)) { // If already logged in reroute to main page.
+    if(getLocalStorage(STORAGE_TRAINER_KEY)) { // If already logged in reroute to main page.
       this.router.navigate(['catalogue']);
     }
 
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.loginForm.value));
+    setLocalStorage(STORAGE_TRAINER_KEY, this.loginForm.value);
 
     this.router.navigate(['catalogue']);
   }

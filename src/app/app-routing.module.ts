@@ -9,7 +9,7 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
+    { path: 'login', component: LoginComponent },//, canActivate: [AuthGuard] }, // AuthGuard handles login as a special case (inverted return).
     { path: 'catalogue', component: CatalogueComponent, canActivate: [AuthGuard] },
 ];
 

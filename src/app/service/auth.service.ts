@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { STORAGE_KEY } from '../constants';
 import { User } from '../models/User.model';
 
 @Injectable({
@@ -13,6 +14,9 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
+    const auth = localStorage.getItem(STORAGE_KEY);
+    if (auth) { return true; }
+
     return false;
   }
 }

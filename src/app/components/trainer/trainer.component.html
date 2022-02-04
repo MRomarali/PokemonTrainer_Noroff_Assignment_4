@@ -3,7 +3,7 @@
         <li class="pokemon" *ngFor='let pokemon of collection; let i = index;'>
             <p class="name">{{ pokemon.name }}</p>
             <img [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.id + ".png"' />
-            <button (click)="onRemoveClicked(i)">✔️</button>
+            <button (click)="onRemoveClicked(i)">❌</button>
         </li>
     </ul>
 </div>

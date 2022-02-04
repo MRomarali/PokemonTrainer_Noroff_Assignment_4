@@ -7,11 +7,12 @@ import { Trainer } from '../models/trainer.model';
   providedIn: 'root'
 })
 export class AuthService {
+  trainer: Trainer = { username: 'null', collection: [] }
   constructor() { }
 
   // getters & setters
   get getTrainer(): Trainer {
-    return { id: 0, username: '', collection: [] };
+    return this.trainer;
   }
 
   isLoggedIn(): boolean {

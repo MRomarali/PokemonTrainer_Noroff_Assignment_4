@@ -1,4 +1,10 @@
-
 <div class="catalogue">
     <h2 class="header">Catalogue</h2>
+    <ul class="list">
+        <li class="pokemon" *ngFor='let pokemon of collection; let i = index;'>
+            <p class="name">{{ pokemon.name }}</p>
+            <img [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (i + 1) + ".png"' />
+            <button (click)="onAddClicked(i)">✔️</button>
+        </li>
+    </ul>
 </div>

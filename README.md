@@ -8,7 +8,7 @@
   <p align="center">
     Heroku App
     <br />
-    <a href="">Demo</a>
+    <a href="https://pokemon-assignment-4.herokuapp.com/">Demo</a>
   </p>
 </div>
 
@@ -208,7 +208,7 @@ The following features/tools must be present in the application:
 
 # Resources
 
-Heroku: <a href="">Demo</a>
+Heroku: <a href="https://pokemon-assignment-4.herokuapp.com/">Demo</a>
 
 Figma: <a href="">Diagram</a>
 
@@ -231,7 +231,7 @@ ng serve
 
 Heroku App:
 
-<a href=""></a>
+<a href="https://pokemon-assignment-4.herokuapp.com/">https://pokemon-assignment-4.herokuapp.com/</a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

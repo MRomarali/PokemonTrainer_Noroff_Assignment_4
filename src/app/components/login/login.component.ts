@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Router } from '@angular/router';
 import { STORAGE_TRAINER_KEY } from 'src/app/constants';
 import { getLocalStorage, setLocalStorage } from 'src/app/helpers/storage.helper';
+import { Trainer } from 'src/app/models/trainer.model';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    setLocalStorage(STORAGE_TRAINER_KEY, this.loginForm.value);
+    const trainer: Trainer = { username: this.loginForm.value.username, collection: [] };
+    setLocalStorage(STORAGE_TRAINER_KEY, trainer);
 
     this.router.navigate(['catalogue']);
   }

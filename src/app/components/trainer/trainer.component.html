@@ -1,24 +1,9 @@
 <div class="trainer">
     <ul class="list">
-        <li class="pokemon">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
-            <button (click)="onRemoveClicked(0)">X</button>
-            <p class="name">Pokémon Name</p>
-        </li>
-        <li class="pokemon">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
-            <button (click)="onRemoveClicked(0)">X</button>
-            <p class="name">Pokémon Name</p>
-        </li>
-        <li class="pokemon">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
-            <button (click)="onRemoveClicked(0)">X</button>
-            <p class="name">Pokémon Name</p>
-        </li>
-        <li class="pokemon">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
-            <button (click)="onRemoveClicked(0)">X</button>
-            <p class="name">Pokémon Name</p>
+        <li class="pokemon" *ngFor='let pokemon of collection; let i = index;'>
+            <p class="name">{{ pokemon.name }}</p>
+            <img [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.id + ".png"' />
+            <button (click)="onRemoveClicked(i)">✔️</button>
         </li>
     </ul>
 </div>

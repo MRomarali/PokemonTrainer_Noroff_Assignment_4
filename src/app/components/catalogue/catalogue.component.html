@@ -3,8 +3,7 @@
     <ul class="list">
         <li class="pokemon" *ngFor='let pokemon of collection; let pos = index;'>
             <p class="name">{{ pokemon.name }}</p>
-            <img
-                [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (pos + 1) + ".png"' />
+            <img [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (pos + 1) + ".png"' />
             <button (click)="onAddClicked(pos)" [innerText]="pokemonInTrainer[pos].id !== -1 ? '✔️' : '➕'">➕</button>
         </li>
     </ul>

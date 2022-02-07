@@ -12,15 +12,22 @@ export class AuthGuard implements CanActivate {
         private router: Router
     ) { }
 
+    /**
+     * Check if Trainer has been logged in. If not redirect to login page.
+     * @param route 
+     * @param state 
+     * @returns true if user is logged in.
+     */
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        // Check if is logged in.
         if (this.auth.isLoggedIn()) {
             return true;
         }
 
-        this.router.navigate(['login']);
+        this.router.navigate(['login']); // Reroute to Login Page.
         return false;
     }
 }

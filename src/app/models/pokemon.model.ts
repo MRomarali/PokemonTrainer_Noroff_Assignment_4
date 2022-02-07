@@ -1,6 +1,8 @@
+/**
+ * Pokemon Object with predefined variables to fill.
+ */
 export interface Pokemon {
-    id: number;
-    name: string;
-    url: string;
-    hasPokemon?: boolean;
+    id: number; // Index in array (+1)
+    name: string; // Pokemon name
+    url: string; // URL to fetch additional pokemon data
 }

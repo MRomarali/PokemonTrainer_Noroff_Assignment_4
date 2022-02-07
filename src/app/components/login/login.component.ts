@@ -38,10 +38,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // getters & setters
+  /**
+   * Get Login From data values.
+   */
   get getFormData(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
   }
 
+  /**
+   * Save Trainer username to local storage and redirect to pokemon catalogue on success.
+   * @returns if form is invalid.
+   */
   onSubmit(): void {
     this.submitted = true;
 
@@ -55,6 +63,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['catalogue']);
   }
 
+  /**
+   * Clear form data value.
+   */
   onReset(): void {
     this.submitted = false;
     this.loginForm.reset();

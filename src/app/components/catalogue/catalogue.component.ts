@@ -12,22 +12,25 @@ import { CollectionService } from 'src/app/service/collection.service';
   styleUrls: ['./catalogue.component.scss']
 })
 export class CatalogueComponent implements OnInit {
-  apiMaxLimit: number = 898;
-  collection: Pokemon[] = [];
-  pokemonInTrainer: Pokemon[] = [];
-  pokemonId: number[] = [];
+  apiMaxLimit: number = 898; // Max number of Pokemons to fetch from API. (More than 898 throws error).
+  collection: Pokemon[] = []; // Catalogue collection of pokemons from API.
+  pokemonInTrainer: Pokemon[] = []; // Pokemons in Trainer Collection.
+  // pokemonId: number[] = [];
 
   constructor(private collectionService: CollectionService) { }
 
   ngOnInit(): void {
+    // Create and empty array of Pokemons in Trainer Collection.
+    // Bypasses an issue where HTML did not read the ID in a desired way.
     for (let index = 0; index < this.apiMaxLimit; index++) {
-      this.pokemonInTrainer.push({ id: -1, name: 'null', url: 'null' });
+      this.pokemonInTrainer.push({ id: -1, name: 'null', url: 'null' }); // "Empty" pokemon object.
     }
 
+    // Check if Pokemon Catalogue exists in Session Storage before proceeding.
     if (!getSessionStorage(STORAGE_POKE_KEY)) {
       this.apiGetPokemon(); // 1118 is max.
     } else {
-      this.update();
+      this.update(); // If Pokemon Catalogue exists update it.
     }
   }
 
@@ -41,13 +44,16 @@ export class CatalogueComponent implements OnInit {
     this.collection = JSON.parse(collection).results;
     const trainer = JSON.parse(getLocalStorageAsString(STORAGE_TRAINER_KEY) || 'null');
 
-    if (trainer.collection.length > 0) {
+    // Helps with visuals of having caught a pokemon.
+    if (trainer.collection.length > 0) { // Make sure Trainer collection is not empty.
+
+      // Iterate over all Pokemons in catalogue and Trainer collection and find matching pairs.
       for (let index = 0; index < this.pokemonInTrainer.length; index++) {
         for (let innerIndex = 0; innerIndex < trainer.collection.length; innerIndex++) {
-            const pokemonInCollection = trainer.collection[innerIndex];
-            if(pokemonInCollection.id - 1 === index) {
-              this.pokemonInTrainer[index] = pokemonInCollection;
-            }
+          const pokemonInCollection = trainer.collection[innerIndex];
+          if (pokemonInCollection.id - 1 === index) { // If ID matches.
+            this.pokemonInTrainer[index] = pokemonInCollection; // add pokemon to "empty" pokemon array.
+          }
         }
       }
     }
@@ -68,6 +74,8 @@ export class CatalogueComponent implements OnInit {
       .then(response => response.json())
       .then(data => {
         const trainer: Trainer = JSON.parse(getLocalStorageAsString(STORAGE_TRAINER_KEY) || 'null');
+        
+        // Iterate through data from API and add ID to every object.
         for (let index = 0; index < trainer.collection.length; index++) {
           const pokemon = trainer.collection[index];
           if (pokemon.id) {
@@ -76,8 +84,8 @@ export class CatalogueComponent implements OnInit {
           }
         }
 
+        // Update session storage.
         setSessionStorage(STORAGE_POKE_KEY, data);
-
         this.update();
       });
   }
@@ -90,7 +98,7 @@ export class CatalogueComponent implements OnInit {
     this.collection[id].id = id + 1; // Add id to pokemon before adding in collection. (Image url)
     this.collectionService.addToCollection(this.collection[id]);
     this.collection[id].hasPokemon = this.collectionService.hasPokemonInCollection(id);
-    
-    this.pokemonInTrainer[id] = this.collection[id];
+
+    this.pokemonInTrainer[id] = this.collection[id]; // set caught pokemon.
   }
 }

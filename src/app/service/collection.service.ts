@@ -54,7 +54,7 @@ export class CollectionService {
    * @param pokemon pokemon to be added.
    */
   public addToCollection(pokemon: Pokemon): void {
-    pokemon = { id: pokemon.id, name: pokemon.name, url: pokemon.url, hasPokemon: true }
+    pokemon = { id: pokemon.id, name: pokemon.name, url: pokemon.url };
     this.trainer.collection.push(pokemon); // Add pokemon to collection
 
     this.save(); // Save collection

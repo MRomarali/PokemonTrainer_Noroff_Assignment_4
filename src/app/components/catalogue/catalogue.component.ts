@@ -15,7 +15,6 @@ export class CatalogueComponent implements OnInit {
   apiMaxLimit: number = 898; // Max number of Pokemons to fetch from API. (More than 898 throws error).
   collection: Pokemon[] = []; // Catalogue collection of pokemons from API.
   pokemonInTrainer: Pokemon[] = []; // Pokemons in Trainer Collection.
-  // pokemonId: number[] = [];
 
   constructor(private collectionService: CollectionService) { }
 
@@ -80,7 +79,7 @@ export class CatalogueComponent implements OnInit {
           const pokemon = trainer.collection[index];
           if (pokemon.id) {
             const pokemonAPI = data.results[pokemon.id - 1];
-            data.results[pokemon.id - 1] = { id: pokemon.id, name: pokemonAPI.name, url: pokemonAPI.url, hasPokemon: pokemon.hasPokemon };
+            data.results[pokemon.id - 1] = { id: pokemon.id, name: pokemonAPI.name, url: pokemonAPI.url };
           }
         }
 
@@ -97,7 +96,6 @@ export class CatalogueComponent implements OnInit {
   public onAddClicked(id: number): void {
     this.collection[id].id = id + 1; // Add id to pokemon before adding in collection. (Image url)
     this.collectionService.addToCollection(this.collection[id]);
-    this.collection[id].hasPokemon = this.collectionService.hasPokemonInCollection(id);
 
     this.pokemonInTrainer[id] = this.collection[id]; // set caught pokemon.
   }

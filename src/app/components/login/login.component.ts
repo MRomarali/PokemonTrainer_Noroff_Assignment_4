@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['catalogue']);
     }
 
+    // Form
     this.loginForm = this.formBuilder.group({
       username: [
         '',
@@ -54,20 +55,21 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
-      return;
+      return; // return if invalid (skip everything after this line).
     }
 
+    // Save Trainer to local storage
     const trainer: Trainer = { username: this.loginForm.value.username, collection: [] };
     setLocalStorage(STORAGE_TRAINER_KEY, trainer);
 
-    this.router.navigate(['catalogue']);
+    this.router.navigate(['catalogue']); // Reroute to catalogue page.
   }
 
   /**
    * Clear form data value.
    */
   onReset(): void {
-    this.submitted = false;
-    this.loginForm.reset();
+    this.submitted = false; // Reset submit status.
+    this.loginForm.reset(); // Reset page.
   }
 }

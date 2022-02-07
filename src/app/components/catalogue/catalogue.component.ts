@@ -20,7 +20,7 @@ export class CatalogueComponent implements OnInit {
   constructor(private collectionService: CollectionService) { }
 
   ngOnInit(): void {
-    for (let index = 0; index < 900; index++) {
+    for (let index = 0; index < this.apiMaxLimit; index++) {
       this.pokemonInTrainer.push({ id: -1, name: 'null', url: 'null' });
     }
 

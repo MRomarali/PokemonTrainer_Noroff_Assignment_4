@@ -23,7 +23,6 @@ export class CatalogueComponent implements OnInit {
     for (let index = 0; index < 900; index++) {
       this.pokemonInTrainer.push({ id: -1, name: 'null', url: 'null' });
     }
-    console.log(this.pokemonInTrainer);
 
     if (!getSessionStorage(STORAGE_POKE_KEY)) {
       this.apiGetPokemon(); // 1118 is max.

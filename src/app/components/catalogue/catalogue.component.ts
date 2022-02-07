@@ -32,27 +32,34 @@ export class CatalogueComponent implements OnInit {
     }
   }
 
+  /**
+   * Update session and local storage values to match current collection state.
+   */
   private update(): void {
     const data: string | null = sessionStorage.getItem(STORAGE_POKE_KEY);
     const collection = data ? data : 'null';
 
     this.collection = JSON.parse(collection).results;
     const trainer = JSON.parse(getLocalStorageAsString(STORAGE_TRAINER_KEY) || 'null');
-    if (trainer.collection.length > 0) {
-      let posInTrainer = 0;
-      for (let index = 0; index < this.pokemonInTrainer.length; index++) {
-        const pokemon = trainer.collection[posInTrainer];
 
+    if (trainer.collection.length > 0) {
+      for (let index = 0; index < this.pokemonInTrainer.length; index++) {
         for (let innerIndex = 0; innerIndex < trainer.collection.length; innerIndex++) {
-            const pok = trainer.collection[innerIndex];
-            if(pok.id - 1 === index) {
-              this.pokemonInTrainer[index] = pok;
+            const pokemonInCollection = trainer.collection[innerIndex];
+            if(pokemonInCollection.id - 1 === index) {
+              this.pokemonInTrainer[index] = pokemonInCollection;
             }
         }
       }
     }
   }
 
+  /**
+   * Get pokemons from API (PokeAPI) & save them to session storage.
+   * 
+   * @param limit how many pokemon to fetch from API. (end point)
+   * @param offset which position to start from when fetching from API. (start point)
+   */
   async apiGetPokemon(limit = this.apiMaxLimit, offset = 0) {
     limit = clamp(limit, 0, this.apiMaxLimit);
     offset = clamp(offset, 0, (this.apiMaxLimit - limit)); // subtract limit so it doesnt overflow max.
@@ -76,6 +83,10 @@ export class CatalogueComponent implements OnInit {
       });
   }
 
+  /**
+   * When trainer "Catches" a pokemon add them to their personal collection of caught pokemons.
+   * @param id pokemon ID.
+   */
   public onAddClicked(id: number): void {
     this.collection[id].id = id + 1; // Add id to pokemon before adding in collection. (Image url)
     this.collectionService.addToCollection(this.collection[id]);

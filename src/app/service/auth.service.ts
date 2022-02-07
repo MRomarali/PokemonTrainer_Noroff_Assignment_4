@@ -24,8 +24,8 @@ export class AuthService {
    */
   isLoggedIn(): boolean {
     const auth = getLocalStorage(STORAGE_TRAINER_KEY);
-    if (auth) { return true; }
+    if (auth) { return true; } // If Trainer was found in Local Storage return true.
 
-    return false;
+    return false; // If no trainer in local storage, return false.
   }
 }

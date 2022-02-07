@@ -23,3 +23,8 @@ export function getSessionStorage(key: string): string {
     const data: string | null = sessionStorage.getItem(key);
     return JSON.parse(data ? data : 'null');
 }
+
+export function getSessionStorageAsString(key: string): string | null {
+    const data: string | null = sessionStorage.getItem(key);
+    return data ? data : 'null';
+}

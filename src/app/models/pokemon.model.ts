@@ -1,5 +1,6 @@
 export interface Pokemon {
-    id?: number;
+    id: number;
     name: string;
     url: string;
+    hasPokemon?: boolean;
 }

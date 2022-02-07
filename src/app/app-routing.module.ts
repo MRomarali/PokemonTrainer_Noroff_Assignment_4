@@ -10,7 +10,7 @@ import { TrainerComponent } from './components/trainer/trainer.component';
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },//, canActivate: [AuthGuard] }, // AuthGuard handles login as a special case (inverted return).
+    { path: 'login', component: LoginComponent },
     { path: 'catalogue', component: CatalogueComponent, canActivate: [AuthGuard] },
     { path: 'trainer', component: TrainerComponent, canActivate: [AuthGuard] },
 ];

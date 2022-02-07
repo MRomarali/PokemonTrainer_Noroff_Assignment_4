@@ -7,6 +7,9 @@ import { AuthGuard } from './components/auth/auth.guard';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 
+/**
+ * Possible routes.
+ */
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },

@@ -17,6 +17,9 @@ export class TrainerComponent {
     this.update();
   }
 
+  /**
+   * Updates collection data from local storage.
+   */
   private update(): void {
     const data: string | null = localStorage.getItem(STORAGE_TRAINER_KEY);
     const collection = data ? data : 'null';
@@ -24,6 +27,10 @@ export class TrainerComponent {
     this.collection = JSON.parse(collection).collection;
   }
 
+  /**
+   * Remove pokemon from collection & update local storage collection.
+   * @param id 
+   */
   public onRemoveClicked(id: number): void {
     if (confirm('Are you sure you wish to delete this pokemon?')) {
       this.collectionService.removeFromCollection(id);

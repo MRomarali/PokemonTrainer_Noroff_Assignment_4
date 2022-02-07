@@ -12,15 +12,16 @@ export class CollectionService {
     this.init();
   }
 
-  collection: Pokemon[] = [];
-  trainer: Trainer = { username: '', collection: [] };
+  collection: Pokemon[] = []; // Initialize empty array.
+  trainer: Trainer = { username: '', collection: [] }; // Initialize as empty.
 
   /**
    * On init get collection & trainer data.
    */
   private init(): void {
-    // Get collection
+    // Get trainer from local storage
     this.trainer = JSON.parse(getLocalStorageAsString(STORAGE_TRAINER_KEY) || 'null');
+    // Get collection from session storage
     const data = JSON.parse(getSessionStorageAsString(STORAGE_POKE_KEY) || 'null');
     if (data) this.collection = data.results; // IF exists set collection.
   }
@@ -38,15 +39,14 @@ export class CollectionService {
    * @returns true if pokemon exists in collection.
    */
   public hasPokemonInCollection(pokemonId: number): boolean {
+    // Iterate through Trainer Collection (Caught Pokemons).
     for (let index = 0; index < this.trainer.collection.length; index++) {
-      const pokemon = this.trainer.collection[index];
-
-      if (pokemonId + 1 === pokemon.id) {
-        return true;
+      if (pokemonId + 1 === this.trainer.collection[index].id) {
+        return true; // if IDs match, return true.
       }
     }
 
-    return false;
+    return false; // If IDs do not match, return false.
   }
 
   /**
@@ -55,9 +55,9 @@ export class CollectionService {
    */
   public addToCollection(pokemon: Pokemon): void {
     pokemon = { id: pokemon.id, name: pokemon.name, url: pokemon.url, hasPokemon: true }
-    this.trainer.collection.push(pokemon);
+    this.trainer.collection.push(pokemon); // Add pokemon to collection
 
-    this.save();
+    this.save(); // Save collection
   }
 
   /**

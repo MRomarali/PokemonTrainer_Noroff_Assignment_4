@@ -32,9 +32,10 @@ export class TrainerComponent {
    * @param id 
    */
   public onRemoveClicked(id: number): void {
+    // Make sure user wishes to delete caught pokemon.
     if (confirm('Are you sure you wish to delete this pokemon?')) {
-      this.collectionService.removeFromCollection(id);
-      this.update();
+      this.collectionService.removeFromCollection(id); // Remove pokemon from collection
+      this.update(); // update collection.
     }
   }
 }

@@ -7,7 +7,7 @@
  * @returns a value between min & max (or original if is valid).
  */
 export function clamp(input: number, min: number, max: number) {
-    let output = Math.min(input, min);
-    output = Math.max(input, max);
-    return output;
+    let output = Math.min(input, min); // Clamp to minimum value.
+    output = Math.max(input, max); // Clamp to maximum value.
+    return output; // Return clamped value.
 }

@@ -11,10 +11,17 @@ export class AuthService {
   constructor() { }
 
   // getters & setters
+  /**
+   * Get Trainer field.
+   */
   get getTrainer(): Trainer {
     return this.trainer;
   }
 
+  /**
+   * Check local storage if Trainer has been saved.
+   * @returns true if Trainer exists in local storage.
+   */
   isLoggedIn(): boolean {
     const auth = getLocalStorage(STORAGE_TRAINER_KEY);
     if (auth) { return true; }

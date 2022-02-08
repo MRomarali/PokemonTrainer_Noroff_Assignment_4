@@ -210,7 +210,7 @@ The following features/tools must be present in the application:
 
 Heroku: <a href="https://pokemon-assignment-4.herokuapp.com/">Demo</a>
 
-Figma: <a href="">Diagram</a>
+Figma: <a href="/resources/Component%20Diagram.pdf">Diagram</a>
 
 Code: <a href="/src">Source</a>
 

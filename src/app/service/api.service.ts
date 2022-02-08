@@ -5,7 +5,7 @@ import { Trainer } from '../models/trainer.model';
   providedIn: 'root'
 })
 export class ApiService {
-  private API_URL = "";//"https://pokemon-assignment-4.herokuapp.com";
+  private API_URL = "https://pokemon-assignment-4.herokuapp.com";
   private API_KEY = "qxuKn1ElJllTdVmPak1engp73N1tuDDuCw7Af8BRbIVTZ0R6eUL1V14RZJrzaW6x";
 
   constructor() { }

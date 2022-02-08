@@ -1,84 +1,99 @@
-
 .trainer {
-    $card-size: 10rem;
+  $card-size: 10rem;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .pokemon-trainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5%;
+    border-radius: 1rem;
+    color: #4feb4f;
+    background-color: #bc8f8f;
+    margin-block-end: 1rem;
+
+    img {
+      height: 5em;
+    }
+  }
+  .list {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    display: grid;
     align-items: center;
     justify-content: center;
+    grid-template-columns: repeat(auto-fit, $card-size);
 
-    .list {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+    gap: 0.5rem;
+
+    .pokemon {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 100%;
+      list-style: none;
+      background-color: #bc8f8f;
+      border-radius: 1rem;
+
+      img {
+        z-index: 1;
         width: 100%;
+        aspect-ratio: 1;
+      }
 
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        grid-template-columns: repeat(auto-fit, $card-size);
-        
-        gap: 0.5rem;
+      button {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
 
-        .pokemon {
-            position: relative;
+        font-weight: bolder;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        background-color: rgba($color: #eb4f4f, $alpha: 1);
+        cursor: pointer;
+        transition: 0.5s;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-            width: 100%;
-            list-style: none;
-            background-color: #bc8f8f;
-            border-radius: 1rem;
-                
-            img {
-                z-index: 1;
-                width: 100%;
-                aspect-ratio: 1;
-            }
-            
-            button {
-                position: absolute;
-                top: 0.5rem;
-                right: 0.5rem;
-                
-                font-weight: bolder;
-                border: none;
-                border-radius: 50%;
-                color: #FFF;
-                background-color: rgba($color: #eb4f4f, $alpha: 1.0);
-                cursor: pointer;
-                transition: 0.5s;
+        width: 1.75rem;
+        aspect-ratio: 1;
 
-                width: 1.75rem;
-                aspect-ratio: 1;
-                
-                z-index: 2;
+        z-index: 2;
 
-                &:hover {
-                    transform: scale(1.2);
-                    box-shadow: 2px 2px 6px rgba($color: #000, $alpha: 0.2);
-                }
-
-                &:active {
-                    transform: scale(0.9);
-                    box-shadow: none;
-                }
-            }
-        
-            .name {
-                width: 100%;
-                text-align: center;
-                position: absolute;
-                bottom: 0.5rem;
-                left: 50%;
-                transform: translateX(-50%);
-                justify-content: center;
-            }
+        &:hover {
+          transform: scale(1.2);
+          box-shadow: 2px 2px 6px rgba($color: #000, $alpha: 0.2);
         }
+
+        &:active {
+          transform: scale(0.9);
+          box-shadow: none;
+        }
+      }
+
+      .name {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        justify-content: center;
+        text-transform: capitalize;
+      }
     }
+  }
 }

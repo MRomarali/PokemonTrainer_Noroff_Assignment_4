@@ -1,10 +1,12 @@
 <div class="catalogue">
-    <h2 class="header" *ngIf="collection">Catalogue</h2>
+    <div class="catalogue-header">
+        <h1 class="header" *ngIf="collection">Catalogue</h1>
+    </div>
     <ul class="list">
         <li class="pokemon" *ngFor='let pokemon of collection; let pos = index;'>
             <p class="name">{{ pokemon.name }}</p>
             <img [src]='"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (pos + 1) + ".png"' />
-            <button (click)="onAddClicked(pos)" [innerText]="pokemonInTrainer[pos].id !== -1 ? '✔️' : '➕'">➕</button>
+            <button (click)="onAddClicked(pos)" [innerText]="pokemonInTrainer[pos].id !== -1 ? '✔️' : '➕'" [ngClass]="pokemonInTrainer[pos].id !== -1 ? 'caught' : ''">➕</button>
         </li>
     </ul>
 </div>

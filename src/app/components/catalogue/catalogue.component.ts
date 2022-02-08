@@ -4,6 +4,7 @@ import { clamp } from 'src/app/helpers/math.helper';
 import { getLocalStorageAsString, getSessionStorage, setSessionStorage } from 'src/app/helpers/storage.helper';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
+import { ApiService } from 'src/app/service/api.service';
 import { CollectionService } from 'src/app/service/collection.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CatalogueComponent implements OnInit {
   collection: Pokemon[] = []; // Catalogue collection of pokemons from API.
   pokemonInTrainer: Pokemon[] = []; // Pokemons in Trainer Collection.
 
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService, private apiService: ApiService) { }
 
   ngOnInit(): void {
     // Create and empty array of Pokemons in Trainer Collection.
@@ -96,6 +97,10 @@ export class CatalogueComponent implements OnInit {
   public onAddClicked(id: number): void {
     this.collection[id].id = id + 1; // Add id to pokemon before adding in collection. (Image url)
     this.collectionService.addToCollection(this.collection[id]);
+
+    // Add Pokemon to API
+    const trainer: Trainer = JSON.parse(getLocalStorageAsString(STORAGE_TRAINER_KEY) || 'null');
+    this.apiService.patchTrainer(trainer);
 
     this.pokemonInTrainer[id] = this.collection[id]; // set caught pokemon.
   }

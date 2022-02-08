@@ -5,6 +5,7 @@ import { Pokemon } from "./pokemon.model";
  * Includes Pokemon Interface.
  */
 export interface Trainer {
+    id: number;
     username: string;
     collection: Pokemon[]; // Array of Pokemon objects
 }

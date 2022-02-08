@@ -13,7 +13,7 @@ export class CollectionService {
   }
 
   collection: Pokemon[] = []; // Initialize empty array.
-  trainer: Trainer = { username: '', collection: [] }; // Initialize as empty.
+  trainer: Trainer = { id: -1, username: '', collection: [] }; // Initialize as empty.
 
   /**
    * On init get collection & trainer data.
@@ -30,7 +30,7 @@ export class CollectionService {
    * Overwrite current or no data to new trainer data.
    */
   private save(): void {
-    setLocalStorage(STORAGE_TRAINER_KEY, { username: this.trainer.username, collection: this.trainer.collection });
+    setLocalStorage(STORAGE_TRAINER_KEY, { id: this.trainer.id, username: this.trainer.username, collection: this.trainer.collection });
   }
 
   /**

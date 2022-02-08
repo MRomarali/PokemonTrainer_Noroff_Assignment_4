@@ -7,7 +7,7 @@ import { Trainer } from '../models/trainer.model';
   providedIn: 'root'
 })
 export class AuthService {
-  trainer: Trainer = { username: 'null', collection: [] }
+  trainer: Trainer = { id: -1, username: 'null', collection: [] }
   constructor() { }
 
   // getters & setters

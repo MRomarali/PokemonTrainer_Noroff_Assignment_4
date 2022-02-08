@@ -1,3 +1,4 @@
+import { Trainer } from './../../models/trainer.model';
 import { Component } from '@angular/core';
 import { STORAGE_TRAINER_KEY } from 'src/app/constants';
 import { Pokemon } from 'src/app/models/pokemon.model';
@@ -10,7 +11,7 @@ import { CollectionService } from 'src/app/service/collection.service';
 })
 export class TrainerComponent {
   collection: Pokemon[] = [];
-
+  username: String = "";
   constructor(private collectionService: CollectionService) { }
 
   ngOnInit(): void {
@@ -22,9 +23,10 @@ export class TrainerComponent {
    */
   private update(): void {
     const data: string | null = localStorage.getItem(STORAGE_TRAINER_KEY);
-    const collection = data ? data : 'null';
-
-    this.collection = JSON.parse(collection).collection;
+    const trainerData = data ? data : 'null';
+    const trainer: Trainer = JSON.parse(trainerData);
+    this.username = trainer.username;
+    this.collection = trainer.collection;
   }
 
   /**
